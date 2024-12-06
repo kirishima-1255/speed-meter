@@ -110,10 +110,45 @@ async function bootanimation_needle(){
         },
       );
 }
+
+async function turn_signal(left,right){
+    while (left == 1 && right == 0) {
+        lamp_change("signalL",1)
+        const myAudio = document.createElement("audio");
+        myAudio.src = "sound/turn_signal.mp3";
+        myAudio.play();
+        await sleep(100)
+        lamp_change("signalL",0)
+        await sleep(100)
+    }
+
+    while (left == 0 && right == 1) {
+        lamp_change("signalR",1)
+        const myAudio = document.createElement("audio");
+        myAudio.src = "sound/turn_signal.mp3";
+        myAudio.play();
+        await sleep(100)
+        lamp_change("signalR",0)
+        await sleep(100)
+    }
+
+    while (left == 1 && right == 1) {
+        lamp_change("signalL",1)
+        lamp_change("signalR",1)
+        await sleep(349)
+        lamp_change("signalL",0)
+        lamp_change("signalR",0)
+        await sleep(349)
+    }
+}
 async function bootloader() {
     await bootanimation_circ()
     await bootanimation_needle()
     await bootlo()
+    await sleep(1000)
+    await turn_signal(1,1)
+    await sleep(1000)
+    await turn_signal(0,0)
     
 }
 
