@@ -9,23 +9,32 @@ var ecomode_info
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒 https://qiita.com/teloppy_com/items/cd483807813af5a4a38a
 
 
-//absのステータスは0が非表示、1が表示
-async function abs_lamp_change(status) {
+//ステータスは0が非表示、1が表示
+async function lamp_change(type, status) {
     if (status == 1) {
-        var element = document.getElementById('abs_lamp');
-        if (element) {
+        var element = document.getElementById(type + '_lamp');
+        if (element === null) {
+        } else {
             element.remove(); // 要素を完全に削除
             // element.style.display = 'none'; // 非表示にする場合
         }
-    }else{
-    document.write('<img id="abs_lamp" src="image/blocker.png">')
+    } else {
+    var img = document.createElement('img');
+    img.id = type + '_lamp';
+    img.src = 'image/blocker.png';
+    document.body.appendChild(img);
     }
 }
 
+
+
+
 async function bootlo(){
-    abs_lamp_change(1)
+    lamp_change("abs",0)
     await sleep(1000)
-    abs_lamp_change(0)
+    lamp_change("abs",1)
+    await sleep(1000)
+    lamp_change("abs",0)
 }
 
 bootlo()
