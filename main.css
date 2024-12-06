@@ -27,22 +27,74 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
 
 #abs_lamp {
     position: absolute;
-    left: 90px;
+    left: 76px;
     top: 140px;
 }
 
 #battery_lamp {
     position: absolute;
-    left: 90px;
-    top: 140px;
+    left: 76px;
+    top: 210px;
 }
 
 #door_lamp {
     position: absolute;
-    left: 90px;
-    top: 140px;
+    left: 76px;
+    top: 290px;
 }
 
+#brake_lamp {
+    position: absolute;
+    left: 76px;
+    top: 360px;
+}
+
+#EPB_lamp {
+    position: absolute;
+    left: 76px;
+    top: 430px;
+}
+
+#ecomode_lamp {
+    position: absolute;
+    left: 76px;
+    top: 510px;
+}
+
+#lowbeam_lamp {
+    position: absolute;
+    left: 520px;
+    top: 250px;
+}
+
+#highbeam_lamp {
+    position: absolute;
+    left: 405px;
+    top: 250px;
+}
+
+#signalL_lamp {
+    position: absolute;
+    left: 110px;
+    top: 50px;
+}
+
+#signalR_lamp {
+    position: absolute;
+    left: 830px;
+    top: 50px;
+}
+
+#drivemode_lamp {
+    position: absolute;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    left: 927px;
+    top: 154px;
+}
 
 
 /*ローディング画面*/
