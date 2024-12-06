@@ -96,6 +96,14 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     top: 154px;
 }
 
+#speedmeter_needle {
+    position: absolute;
+    left: 480px;
+    top: 410px;
+    transform: rotate(-203deg);
+    transform-origin: 30px center 0;
+    z-index: 1000;
+}
 
 /*ローディング画面*/
 /* span{

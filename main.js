@@ -44,9 +44,6 @@ async function drivemde_change(status) {
     }
 }
 
-
-
-
 async function bootlo(){
     //初期設定：消灯
     lamp_change("ecomode",0)
@@ -82,4 +79,26 @@ async function bootlo(){
     lamp_change("EPB",0)
 }
 
-bootlo()
+async function bootanimation(){
+    //起動時に針を回す
+    const image = document.getElementById('speedmeter_needle'); // 針画像
+    image.animate(
+        // 途中の状態を表す配列
+        [
+            { transform: 'rotate(-203deg)' },
+            { transform: 'rotate(23deg)' },
+            { transform: 'rotate(-203deg)' }
+        ], 
+        // タイミングに関する設定
+        {
+          fill: 'backwards', // 再生前後の状態（再生前、開始時の状態を適用）
+          duration: 1000, // 再生時間（1000ミリ秒）
+        },
+      );
+}
+async function bootloader() {
+    await bootlo()
+    await bootanimation()
+}
+
+bootloader()
