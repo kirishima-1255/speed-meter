@@ -80,7 +80,7 @@ async function bootlo(){
 }
 
 async function bootanimation(){
-    //起動時に針を回す
+    //起動時に針を表示し回す
     const image = document.getElementById('speedmeter_needle'); // 針画像
     image.animate(
         // 途中の状態を表す配列
@@ -97,8 +97,7 @@ async function bootanimation(){
       );
 }
 async function bootloader() {
-    await bootlo()
-    await bootanimation()
+    await Promise.all([bootanimation(), bootlo()]);
 }
 
 bootloader()
