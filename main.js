@@ -79,12 +79,26 @@ async function bootlo(){
     lamp_change("EPB",0)
 }
 
-async function bootanimation(){
+async function bootanimation_circ(){
+    //メータを最初は隠しておく
+    var img = document.createElement('img');
+    img.id = "circ_center";
+    img.src = 'image/circ_center.png';
+    document.body.appendChild(img);
+    await sleep(1000)
+    img.style.opacity = '0';
+
+}
+async function bootanimation_needle(){
+
     //起動時に針を回す
     const image = document.getElementById('speedmeter_needle'); // 針画像
+    await sleep(1000)
     image.animate(
         // 途中の状態を表す配列
+        
         [
+            { transform: 'rotate(-203deg)' },
             { transform: 'rotate(-203deg)' },
             { transform: 'rotate(23deg)' },
             { transform: 'rotate(-203deg)' }
@@ -92,13 +106,15 @@ async function bootanimation(){
         // タイミングに関する設定
         {
           fill: 'backwards', // 再生前後の状態（再生前、開始時の状態を適用）
-          duration: 1000, // 再生時間（1000ミリ秒）
+          duration: 1500, // 再生時間（1000ミリ秒）
         },
       );
 }
 async function bootloader() {
+    await bootanimation_circ()
+    await bootanimation_needle()
     await bootlo()
-    await bootanimation()
+    
 }
 
 bootloader()

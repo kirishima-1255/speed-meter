@@ -85,6 +85,14 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     top: 50px;
 }
 
+#circ_center {
+    position: absolute;
+    left: 210px;
+    top: 140px;
+    transform: scale(1.2);
+    transition: opacity 3s; /* opacity要素(不透明度)の変更を3秒間かけて行う */
+}
+
 #drivemode_lamp {
     position: absolute;
     text-align: center;
