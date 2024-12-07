@@ -1,11 +1,5 @@
 'use strict';
 
-var abs_info
-var battery_info
-var door_info
-var brake_info
-var EPB_info
-var ecomode_info
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒 https://qiita.com/teloppy_com/items/cd483807813af5a4a38a
 
 
@@ -15,8 +9,7 @@ async function lamp_change(type, status) {
         var element = document.getElementById(type + '_lamp');
         if (element === null) {
         } else {
-            element.remove(); // 要素を完全に削除
-            // element.style.display = 'none'; // 非表示にする場合
+            element.remove();
         }
     } else {
     var img = document.createElement('img');
@@ -110,46 +103,37 @@ async function bootanimation_needle(){
         },
       );
 }
-
-async function turn_signal(left,right){
-    while (left == 1 && right == 0) {
-        lamp_change("signalL",1)
-        const myAudio = document.createElement("audio");
-        myAudio.src = "sound/turn_signal.mp3";
-        myAudio.play();
-        await sleep(100)
-        lamp_change("signalL",0)
-        await sleep(100)
-    }
-
-    while (left == 0 && right == 1) {
-        lamp_change("signalR",1)
-        const myAudio = document.createElement("audio");
-        myAudio.src = "sound/turn_signal.mp3";
-        myAudio.play();
-        await sleep(100)
-        lamp_change("signalR",0)
-        await sleep(100)
-    }
-
-    while (left == 1 && right == 1) {
-        lamp_change("signalL",1)
-        lamp_change("signalR",1)
-        await sleep(349)
-        lamp_change("signalL",0)
-        lamp_change("signalR",0)
-        await sleep(349)
-    }
+async function winker(){
+    lamp_change("signalL",1)
+    lamp_change("signalR",1)
+    await sleep(385)
+    lamp_change("signalL",0)
+    lamp_change("signalR",0)
+    await sleep(385)
 }
+
 async function bootloader() {
     await bootanimation_circ()
     await bootanimation_needle()
     await bootlo()
-    await sleep(1000)
-    await turn_signal(1,1)
-    await sleep(1000)
-    await turn_signal(0,0)
-    
+    await lamp_change("lowbeam",1)
+    for (let i = 0; i < 20; i++) {
+        winker()
+        await sleep(770)
+    }
 }
 
 bootloader()
+
+function digital_clock() {
+    const myWorker = new Worker('digital_clock.js');
+    const clockElement = document.getElementById('d_clock');
+    
+    myWorker.onmessage = function(e) {
+        clockElement.textContent = e.data;
+    };
+}
+
+// DOMContentLoaded イベントで確実に要素が存在する状態で実行
+document.addEventListener('DOMContentLoaded', digital_clock);
+
