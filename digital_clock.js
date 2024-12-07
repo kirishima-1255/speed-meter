@@ -12,3 +12,5 @@ let nowHour = twoDigit( nowTime.getHours() );
 let nowMin  = twoDigit( nowTime.getMinutes() );
 
 let d_clock_view = nowHour + ":" + nowMin;
+document.getElementById("d_clock").innerHTML = d_clockview;
+setInterval('digital_clock()',1000);
