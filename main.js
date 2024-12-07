@@ -122,6 +122,7 @@ async function digital_clock() {
         }
     };
 }
+window.addEventListener('load', digital_clock);
 
 async function bootloader() {
     await bootanimation_circ()
