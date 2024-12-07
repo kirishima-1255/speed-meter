@@ -1,11 +1,5 @@
 'use strict';
 
-var abs_info
-var battery_info
-var door_info
-var brake_info
-var EPB_info
-var ecomode_info
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒 https://qiita.com/teloppy_com/items/cd483807813af5a4a38a
 
 
@@ -15,8 +9,7 @@ async function lamp_change(type, status) {
         var element = document.getElementById(type + '_lamp');
         if (element === null) {
         } else {
-            element.remove(); // 要素を完全に削除
-            // element.style.display = 'none'; // 非表示にする場合
+            element.remove();
         }
     } else {
     var img = document.createElement('img');
@@ -133,43 +126,12 @@ async function bootloader() {
 bootloader()
 
 function digital_clock() {
-    console.log('digital_clock function started'); // デバッグ用
-
+    const myWorker = new Worker('digital_clock.js');
     const clockElement = document.getElementById('d_clock');
-    if (!clockElement) {
-        console.error('Clock element not found'); // エラーチェック
-        return;
-    }
-
-    try {
-        const myWorker = new Worker('digital_clock.js');
-        console.log('Worker created'); // デバッグ用
-
-        myWorker.onmessage = function(e) {
-            console.log('Received message from worker:', e.data); // デバッグ用
-            clockElement.textContent = e.data;
-        };
-
-        myWorker.onerror = function(error) {
-            console.error('Worker error:', error); // エラーハンドリング
-        };
-    } catch (error) {
-        console.error('Error creating worker:', error); // エラーハンドリング
-        // Worker が使えない場合のフォールバック
-        fallbackClock(clockElement);
-    }
-}
-
-// フォールバック用の通常の時計実装
-function fallbackClock(element) {
-    function updateTime() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getSeconds()).padStart(2, '0');
-        element.textContent = `${hours}:${minutes}`;
-    }
-    updateTime();
-    setInterval(updateTime, 1000);
+    
+    myWorker.onmessage = function(e) {
+        clockElement.textContent = e.data;
+    };
 }
 
 // DOMContentLoaded イベントで確実に要素が存在する状態で実行
