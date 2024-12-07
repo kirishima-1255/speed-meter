@@ -111,26 +111,55 @@ async function bootanimation_needle(){
       );
 }
 
-async function digital_clock() {
-    const myWorker = new Worker("digital_clock.js");
-    
-    // Workerからのメッセージを受け取る
-    myWorker.onmessage = function(e) {
-        const clockElement = document.getElementById('d_clock');
-        if (clockElement) {
-            clockElement.textContent = e.data;
-        }
-    };
-}
-window.addEventListener('load', digital_clock);
-
 async function bootloader() {
     await bootanimation_circ()
     await bootanimation_needle()
     await bootlo()
-    await digital_clock()
     await lamp_change("lowbeam",1)
     
 }
 
 bootloader()
+
+function digital_clock() {
+    console.log('digital_clock function started'); // デバッグ用
+
+    const clockElement = document.getElementById('d_clock');
+    if (!clockElement) {
+        console.error('Clock element not found'); // エラーチェック
+        return;
+    }
+
+    try {
+        const myWorker = new Worker('digital_clock.js');
+        console.log('Worker created'); // デバッグ用
+
+        myWorker.onmessage = function(e) {
+            console.log('Received message from worker:', e.data); // デバッグ用
+            clockElement.textContent = e.data;
+        };
+
+        myWorker.onerror = function(error) {
+            console.error('Worker error:', error); // エラーハンドリング
+        };
+    } catch (error) {
+        console.error('Error creating worker:', error); // エラーハンドリング
+        // Worker が使えない場合のフォールバック
+        fallbackClock(clockElement);
+    }
+}
+
+// フォールバック用の通常の時計実装
+function fallbackClock(element) {
+    function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        element.textContent = `${hours}:${minutes}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+}
+
+// DOMContentLoaded イベントで確実に要素が存在する状態で実行
+document.addEventListener('DOMContentLoaded', digital_clock);

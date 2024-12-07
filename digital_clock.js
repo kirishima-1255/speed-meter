@@ -4,11 +4,12 @@ function updateClock() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const timeString = `${hours}:${minutes}`;
     
-    // メインスレッドに時刻を送信
+    console.log('Worker sending time:', timeString); // デバッグ用
     postMessage(timeString);
 }
 
-// 1秒ごとに更新
-setInterval(updateClock, 1000);
 // 初回実行
 updateClock();
+
+// 1秒ごとに更新
+setInterval(updateClock, 1000);
