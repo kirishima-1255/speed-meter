@@ -110,13 +110,24 @@ async function bootanimation_needle(){
         },
       );
 }
+async function winker(){
+    lamp_change("signalL",1)
+    lamp_change("signalR",1)
+    await sleep(385)
+    lamp_change("signalL",0)
+    lamp_change("signalR",0)
+    await sleep(385)
+}
 
 async function bootloader() {
     await bootanimation_circ()
     await bootanimation_needle()
     await bootlo()
     await lamp_change("lowbeam",1)
-    
+    for (let i = 0; i < 20; i++) {
+        winker()
+        await sleep(770)
+    }
 }
 
 bootloader()
@@ -154,7 +165,7 @@ function fallbackClock(element) {
     function updateTime() {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const minutes = String(now.getSeconds()).padStart(2, '0');
         element.textContent = `${hours}:${minutes}`;
     }
     updateTime();
@@ -163,3 +174,4 @@ function fallbackClock(element) {
 
 // DOMContentLoaded イベントで確実に要素が存在する状態で実行
 document.addEventListener('DOMContentLoaded', digital_clock);
+
