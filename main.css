@@ -26,9 +26,12 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
 
 #d_clock {
     position: absolute;
-    left: 76px;
-    top: 140px;
+    left: 750px;
+    top: 14px;
+    font-size: 30px;
+    font-weight: bold;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #abs_lamp {
