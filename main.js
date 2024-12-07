@@ -104,8 +104,10 @@ async function bootanimation_needle(){
       );
 }
 async function winker(){
-    audio.src='sound/turn_signal.mp3';
-    audio.play(); //audioを再生
+    var audio = new Audio('sound/turn_signal.mp3');
+    audio.load();
+    audio.play();
+
     lamp_change("signalL",1)
     lamp_change("signalR",1)
     await sleep(385)
