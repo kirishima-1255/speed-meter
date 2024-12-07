@@ -111,10 +111,18 @@ async function bootanimation_needle(){
       );
 }
 
-async function digital_clock(){
+async function digital_clock() {
     const myWorker = new Worker("digital_clock.js");
-
+    
+    // Workerからのメッセージを受け取る
+    myWorker.onmessage = function(e) {
+        const clockElement = document.getElementById('d_clock');
+        if (clockElement) {
+            clockElement.textContent = e.data;
+        }
+    };
 }
+
 async function bootloader() {
     await bootanimation_circ()
     await bootanimation_needle()
