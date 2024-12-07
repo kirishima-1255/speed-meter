@@ -24,6 +24,12 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     display: none;
 }
 
+#d_clock {
+    position: absolute;
+    left: 76px;
+    top: 140px;
+    color: white;
+}
 
 #abs_lamp {
     position: absolute;
