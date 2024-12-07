@@ -113,7 +113,7 @@ async function bootanimation_needle(){
 
 async function digital_clock(){
     const myWorker = new Worker("digital_clock.js");
-    document.getElementById('d_clock').innerHTML = d_clock_view;
+
 }
 async function bootloader() {
     await bootanimation_circ()
