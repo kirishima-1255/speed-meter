@@ -1,7 +1,13 @@
 'use strict';
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒 https://qiita.com/teloppy_com/items/cd483807813af5a4a38a
-
+const winkeraudioContext = new AudioContext();
+const winkerresponse = await fetch("sound/turn_signal.mp3");
+const winkerarrayBuffer = await winkerresponse.arrayBuffer();
+const winkeraudioBuffer = await winkeraudioContext.decodeAudioData(arrayBuffer);
+const winkeraudio = winkeraudioContext.createBufferSource();
+winkeraudio.buffer = winkeraudioBuffer;
+winkeraudio.connect(winkeraudioContext.destination);
 
 //ステータスは0が非表示、1が表示
 async function lamp_change(type, status) {
@@ -104,13 +110,7 @@ async function bootanimation_needle(){
       );
 }
 async function winker(){
-    const audioContext = new AudioContext();
-    const response = await fetch("sound/turn_signal.mp3");
-    const arrayBuffer = await response.arrayBuffer();
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    const audio = audioContext.createBufferSource();
-    audio.buffer = audioBuffer;
-    audio.connect(audioContext.destination);
+
     audio.start();
 
     lamp_change("signalL",1)
