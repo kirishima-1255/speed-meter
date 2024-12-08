@@ -1,8 +1,9 @@
 'use strict';
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒 https://qiita.com/teloppy_com/items/cd483807813af5a4a38a
-
+var winkeraudio = "Global";
 async function winker_audio_start() {
+
     const winkeraudioContext = new AudioContext();
     const winkerresponse = await fetch("sound/turn_signal.mp3");
     const winkerarrayBuffer = await winkerresponse.arrayBuffer();
@@ -114,9 +115,7 @@ async function bootanimation_needle(){
       );
 }
 async function winker(){
-
-    audio.start();
-
+    winkeraudio.start();
     lamp_change("signalL",1)
     lamp_change("signalR",1)
     await sleep(385)
