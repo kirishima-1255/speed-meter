@@ -122,7 +122,7 @@ async function bootloader() {
     await bootanimation_needle()
     await bootlo()
     await lamp_change("lowbeam",1)
-    window.setInterval(winker, 770);
+    window.setInterval(winker, 720);
     for (let i = 0; i < 20; i++) {
         await sleep(770);
     }
