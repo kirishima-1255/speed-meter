@@ -6,7 +6,7 @@ async function winker_audio_start() {
     const winkeraudioContext = new AudioContext();
     const winkerresponse = await fetch("sound/turn_signal.mp3");
     const winkerarrayBuffer = await winkerresponse.arrayBuffer();
-    const winkeraudioBuffer = await winkeraudioContext.decodeAudioData(arrayBuffer);
+    const winkeraudioBuffer = await winkeraudioContext.decodeAudioData(winkerarrayBuffer);
     const winkeraudio = winkeraudioContext.createBufferSource();
     winkeraudio.buffer = winkeraudioBuffer;
     winkeraudio.connect(winkeraudioContext.destination);
