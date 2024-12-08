@@ -104,9 +104,14 @@ async function bootanimation_needle(){
       );
 }
 async function winker(){
-    // var audio = new Audio('sound/turn_signal.mp3');
-    // audio.load();
-    // audio.play();
+    const audioContext = new AudioContext();
+    const response = await fetch("sound/turn_signal.mp3");
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    const audio = audioContext.createBufferSource();
+    audio.buffer = audioBuffer;
+    audio.connect(audioContext.destination);
+    audio.start();
 
     lamp_change("signalL",1)
     lamp_change("signalR",1)
