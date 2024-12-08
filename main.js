@@ -110,7 +110,7 @@ async function winker(){
     await sleep(385)
     lamp_change("signalL",0)
     lamp_change("signalR",0)
-    await sleep(340)
+    await sleep(300)
 }
 
 async function winker_sound(){
