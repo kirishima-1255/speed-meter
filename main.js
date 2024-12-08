@@ -62,6 +62,8 @@ async function bootlo(){
     lamp_change("EPB",1)
     await sleep(110)
     drivemde_change("P")
+    let audio = document.getElementById('sys_start_sound');
+    audio.play();
     await sleep(1000)
     //チェック後消灯
 
@@ -70,6 +72,8 @@ async function bootlo(){
     lamp_change("brake",0)
     lamp_change("door",0)
     lamp_change("EPB",0)
+    let audio2 = document.getElementById('no_etc');
+    audio2.play();
 }
 
 async function bootanimation_circ(){
@@ -113,7 +117,7 @@ async function winker(){
 }
 
 async function winker_sound(){
-    var audio = document.getElementById('winker_sound');
+    let audio = document.getElementById('winker_sound');
     audio.play();
 }
 
@@ -122,7 +126,7 @@ async function bootloader() {
     await bootanimation_needle()
     await bootlo()
     await lamp_change("lowbeam",1)
-    let winker_sound = window.setInterval(winker, 720);
+    let winker_sound = window.setInterval(winker, 700);
     for (let i = 0; i < 20; i++) {
         await sleep(770);
     }

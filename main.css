@@ -126,6 +126,18 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     display:none;
 }
 
+#sys_start_sound {
+    display:none;
+}
+
+#no_etc {
+    display:none;
+}
+
+#yes_etc {    
+    display:none;
+}
+
 /*ローディング画面*/
 /* span{
     display:inline-block;
