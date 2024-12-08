@@ -110,7 +110,6 @@ async function winker(){
     await sleep(385)
     lamp_change("signalL",0)
     lamp_change("signalR",0)
-    await sleep(250)
 }
 
 async function winker_sound(){
@@ -123,10 +122,11 @@ async function bootloader() {
     await bootanimation_needle()
     await bootlo()
     await lamp_change("lowbeam",1)
+    window.setInterval(winker, 770);
     for (let i = 0; i < 20; i++) {
-        winker()
-        await sleep(770)
+        await sleep(770);
     }
+    window.clearInterval(winker);
 }
 
 bootloader()
