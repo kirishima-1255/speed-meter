@@ -104,7 +104,7 @@ async function bootanimation_needle(){
       );
 }
 async function winker(){
-    
+    await winker_sound()
     lamp_change("signalL",1)
     lamp_change("signalR",1)
     await sleep(385)
