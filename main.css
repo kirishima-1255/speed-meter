@@ -34,32 +34,33 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.lamp {
-    visibility: hidden; /* 初期状態は非表示 */
-}
 
 #abs_lamp {
     position: absolute;
     left: 76px;
     top: 140px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #battery_lamp {
     position: absolute;
     left: 76px;
     top: 210px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #door_lamp {
     position: absolute;
     left: 76px;
     top: 290px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #brake_lamp {
     position: absolute;
     left: 76px;
     top: 360px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #EPB_lamp {
