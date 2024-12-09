@@ -67,24 +67,28 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     position: absolute;
     left: 76px;
     top: 430px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #ecomode_lamp {
     position: absolute;
     left: 76px;
     top: 510px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #lowbeam_lamp {
     position: absolute;
     left: 520px;
     top: 250px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 #highbeam_lamp {
     position: absolute;
     left: 405px;
     top: 250px;
+    visibility: hidden; /* 初期状態は非表示 */
 }
 
 /* main.css */
