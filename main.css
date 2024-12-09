@@ -98,7 +98,7 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
 
 /* 表示状態のクラス */
 .lamp-visible {
-    display: none;
+    display: block;
 }
 
 #circ_center {
