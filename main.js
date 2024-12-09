@@ -5,15 +5,10 @@ const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//ti
 
 //ステータスは0が非表示、1が表示
 async function lamp_change(type, status) {
-    async function lamp_change(type, status) {
-        const element = document.getElementById(type + '_lamp');
-        if (element) {
-            if (status == 1) {
-                element.classList.remove('lamp-visible');
-            } else {
-                element.classList.add('lamp-visible');
-            }
-        }
+    const element = document.getElementById(type + '_lamp');
+    if (element) {
+        // status が 1 の時は非表示、0 の時は表示
+        element.style.visibility = status === 1 ? 'hidden' : 'visible';
     }
 }
 
