@@ -5,17 +5,15 @@ const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//ti
 
 //ステータスは0が非表示、1が表示
 async function lamp_change(type, status) {
-    if (status == 1) {
-        var element = document.getElementById(type + '_lamp');
-        if (element === null) {
-        } else {
-            element.remove();
+    async function lamp_change(type, status) {
+        const element = document.getElementById(type + '_lamp');
+        if (element) {
+            if (status == 1) {
+                element.classList.remove('lamp-visible');
+            } else {
+                element.classList.add('lamp-visible');
+            }
         }
-    } else {
-    var img = document.createElement('img');
-    img.id = type + '_lamp';
-    img.src = 'image/blocker.png';
-    document.body.appendChild(img);
     }
 }
 
@@ -107,7 +105,7 @@ async function bootanimation_needle(){
         },
       );
 }
-async function winker(){
+async function hazard_signal(){
     await winker_sound()
     lamp_change("signalL",1)
     lamp_change("signalR",1)
@@ -126,7 +124,7 @@ async function bootloader() {
     await bootanimation_needle()
     await bootlo()
     await lamp_change("lowbeam",1)
-    let winker_sound = window.setInterval(winker, 700);
+    let winker_sound = window.setInterval(hazard_signal, 710);
     for (let i = 0; i < 20; i++) {
         await sleep(770);
     }

@@ -86,12 +86,19 @@ body::-webkit-scrollbar {        /* Chrome, Safari 対応 */
     position: absolute;
     left: 110px;
     top: 50px;
+    display: none; /* 初期状態は非表示 */
 }
 
 #signalR_lamp {
     position: absolute;
     left: 830px;
     top: 50px;
+    display: none; /* 初期状態は非表示 */
+}
+
+/* 表示状態のクラス */
+.lamp-visible {
+    display: none;
 }
 
 #circ_center {
